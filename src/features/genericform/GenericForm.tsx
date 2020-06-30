@@ -7,7 +7,7 @@ class GenericForm extends React.Component {
 	public setState: any;
 	public userNameInput: any;
     state = {userName: ''}
-    handleSubmit = async (event) => {
+    handleSubmit = async (event: any) => {
         const url = 'https://api.github.com/users/';
         event.preventDefault();
         const response = await axios.get(url + `${this.state.userName}`)
@@ -20,7 +20,7 @@ class GenericForm extends React.Component {
         this.setState(() => ({userName: ''}))
     }
 
-    handleClear = (event) => {
+    handleClear = (event: any) => {
         this.setState(() => ({userName: ''}))
         this.props.onClear(event)
     }
@@ -31,7 +31,7 @@ class GenericForm extends React.Component {
                 <input
                     type="text"
                     value={this.state.userName}
-                    onChange={event => this.setState({userName: event.target.value})}
+                    onChange={(event: any) => this.setState({userName: event.target.value})}
                     placeholder={this.props.formName}
                     ref={this.userNameInput}
                     required

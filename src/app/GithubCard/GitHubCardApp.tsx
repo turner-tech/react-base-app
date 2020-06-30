@@ -9,13 +9,13 @@ export class GitHubCardApp extends React.Component {
         profiles: [],
     }
 
-    addNewProfile = (profileData) => {
-        this.setState(prevState => ({
+    addNewProfile = (profileData: any) => {
+        this.setState((prevState: any) => ({
             profiles: [...prevState.profiles, profileData]
         }));
     };
 
-    clearProfile = (event) => {
+    clearProfile = (event: any) => {
         event.preventDefault();
         this.setState(() => ({profiles: []}))
     }
