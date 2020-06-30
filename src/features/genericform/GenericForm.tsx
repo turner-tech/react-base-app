@@ -1,46 +1,54 @@
-import React from "react";
-
+import React, {useState} from "react";
 const axios = require('axios').default;
 
-class GenericForm extends React.Component {
-	public props: any;
-	public setState: any;
-	public userNameInput: any;
-    state = {userName: ''}
-    handleSubmit = async (event: any) => {
-        const url = 'https://api.github.com/users/';
-        event.preventDefault();
-        const response = await axios.get(url + `${this.state.userName}`)
-        console.log('TOM' + response.data.toString())
-        if (!response.data) {
-            console.log('It is likely that UserName: ' + this.state.userName + ' was not found!');
-        } else {
-            this.props.onSubmit(response.data);
-        }
-        this.setState(() => ({userName: ''}))
-    }
-
-    handleClear = (event: any) => {
-        this.setState(() => ({userName: ''}))
-        this.props.onClear(event)
-    }
-
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <input
-                    type="text"
-                    value={this.state.userName}
-                    onChange={(event: any) => this.setState({userName: event.target.value})}
-                    placeholder={this.props.formName}
-                    ref={this.userNameInput}
-                    required
-                />
-                <button>Add card</button>
-                <button onClick={event => (this.handleClear(event))}>Clear</button>
-            </form>
-        )
-    }
+interface FormData {
+    important: string
+    error: string
 }
 
-export default GenericForm;
+interface Props {
+    formName: string;
+    ok?: boolean;
+    i?: number;
+    onSubmit: (value: any) => any;
+    onClear: (value: any) => any;
+    data?: FormData
+}
+
+export const GenericForm: React.FC<Props> = ({formName, onSubmit, onClear}) => {
+    const [userName, setUserName] = useState<string>('');
+
+    const handleSubmit = async (event: any) => {
+        const url = 'https://api.github.com/users/';
+        event.preventDefault();
+        const response = await axios.get(url + `${userName}`)
+        console.log('Login: ' + response.data.login.toString())
+        if (!response.data) {
+            console.log('It is likely that UserName: ' + userName + ' was not found!');
+        } else {
+            onSubmit(response.data);
+        }
+        setUserName('');
+    }
+
+    const handleClear = (event: any) => {
+        setUserName('')
+        onClear(event)
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                value={userName}
+                onChange={(event: any) => setUserName(event.target.value)}
+                placeholder={formName}
+                // ref={this.userNameInput}
+                required
+            />
+            <button>Add card</button>
+            <button onClick={event => (handleClear(event))}>Clear</button>
+        </form>
+    )
+
+}
