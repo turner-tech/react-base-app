@@ -1,6 +1,8 @@
 import React from "react";
 
 class Card extends React.Component {
+	public props: any;
+
     render() {
         const profile = this.props;
         return (

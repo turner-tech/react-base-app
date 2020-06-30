@@ -3,6 +3,9 @@ import React from "react";
 const axios = require('axios').default;
 
 class GenericForm extends React.Component {
+	public props: any;
+	public setState: any;
+	public userNameInput: any;
     state = {userName: ''}
     handleSubmit = async (event) => {
         const url = 'https://api.github.com/users/';

@@ -3,6 +3,8 @@ import CardList from '../../features/cardlist/CardList'
 import GenericForm from '../../features/genericform/GenericForm'
 
 export class GitHubCardApp extends React.Component {
+	public setState: any;
+	public props: any;
     state = {
         profiles: [],
     }
