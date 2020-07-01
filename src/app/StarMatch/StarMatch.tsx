@@ -6,10 +6,10 @@ import {StarsDisplay} from "./StarsDisplay/StarsDisplay";
 
 
 const useStarMatchState = () => {
-    const [stars, setStars] = useState(utils.random(1, 9));
-    const [candidateNums, setCandidateNums] = useState([]);
-    const [availableNums, setAvailableNums] = useState(utils.range(1, 9))
-    const [secondsLeft, setSecondsLeft] = useState(10);
+    const [stars, setStars] = useState<number>(utils.random(1, 9));
+    const [candidateNums, setCandidateNums] = useState<number[]>([]);
+    const [availableNums, setAvailableNums] = useState<number[]>(utils.range(1, 9))
+    const [secondsLeft, setSecondsLeft] = useState<number>(10);
 
     useEffect(() => {
         if (secondsLeft > 0 && availableNums.length > 0) {
@@ -19,7 +19,7 @@ const useStarMatchState = () => {
         }
     })
 
-    const setStarMatchState = (newCandidateNums) => {
+    const setStarMatchState = (newCandidateNums: any) => {
         if (utils.sum(newCandidateNums) !== stars) {
             setCandidateNums(newCandidateNums);
         } else {
@@ -34,23 +34,23 @@ const useStarMatchState = () => {
     return {stars, availableNums, candidateNums, secondsLeft, setStarMatchState};
 }
 
-export const StarMatch = (props) => {
+export const StarMatch = (props: any) => {
     const {stars, availableNums, candidateNums, secondsLeft, setStarMatchState} = useStarMatchState();
 
     const candidatesWrong = utils.sum(candidateNums) > stars;
     const gameStatus = availableNums.length === 0 ? 'won' : secondsLeft === 0 ? 'lost' : 'active';
 
-    const numStatus = (number) => {
-        if (!availableNums.includes(number)) {
+    const numStatus = (num: number) => {
+        if (!availableNums.includes(num)) {
             return 'used';
         }
-        if (candidateNums.includes(number)) {
+        if (candidateNums.includes(num)) {
             return candidatesWrong ? 'wrong' : 'candidate';
         }
         return 'available';
     }
 
-    const onNumClick = (numId, currentStatus) => {
+    const onNumClick = (numId: number, currentStatus: string) => {
         if (gameStatus !== 'active' || currentStatus === 'used') {
             return;
         }
@@ -88,7 +88,7 @@ export const StarMatch = (props) => {
     );
 };
 
-const PlayAgain = props => (
+const PlayAgain = (props: any) => (
     <div className="game-done">
         <div className="message"
              style={{color: props.gameStatus === 'won' ? 'green' : 'red'}}>

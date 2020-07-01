@@ -1,28 +1,35 @@
 import React from 'react';
 
-export class PlayNumber extends React.Component {
-	public props: any;
-	public numId: any;
-	public numStatus: any;
-	public onClick: any;
+interface Props {
+    numId: number
+    numStatus: string
+    onClick: (numId: number, currentStatus: string) => void;
+}
 
-    render() {
-        const {numId, numStatus, onClick} = this.props;
-        return (
-            <button
-                className="number"
-                style={{backgroundColor: colors[numStatus]}}
-                onClick={() => onClick(numId, numStatus)}>
-                {numId}
-            </button>
-        )
+const calcButtonColor = (numStatus: string): string => {
+    switch (numStatus) {
+        case 'available': {
+            return 'lightgray';
+        }
+        case 'used':
+            return 'lightgreen'
+        case 'wrong':
+            return 'lightcoral'
+        case 'candidate':
+            return 'deepskyblue'
+        default:
+            return 'lightgray'
     }
 }
 
-// Color Theme
-const colors = {
-    available: 'lightgray',
-    used: 'lightgreen',
-    wrong: 'lightcoral',
-    candidate: 'deepskyblue',
-};
+export const PlayNumber: React.FC<Props> = ({numId, numStatus, onClick}) => {
+    return (
+        <button
+            className="number"
+            style={{backgroundColor: calcButtonColor(numStatus)}}
+            onClick={() => onClick(numId, numStatus)}>
+            {numId}
+        </button>
+    )
+}
+
