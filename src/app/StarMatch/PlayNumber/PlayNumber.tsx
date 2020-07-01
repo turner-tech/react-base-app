@@ -1,6 +1,11 @@
 import React from 'react';
 
 export class PlayNumber extends React.Component {
+	public props: any;
+	public numId: any;
+	public numStatus: any;
+	public onClick: any;
+
     render() {
         const {numId, numStatus, onClick} = this.props;
         return (
