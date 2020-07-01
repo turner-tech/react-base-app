@@ -1,22 +1,17 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 const axios = require('axios').default;
-
-interface FormData {
-    important: string
-    error: string
-}
 
 interface Props {
     formName: string;
+    onSubmit: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onClear: (event: React.ChangeEvent<HTMLButtonElement>) => void;
+    count?: number;
     ok?: boolean;
-    i?: number;
-    onSubmit: (value: any) => any;
-    onClear: (value: any) => any;
-    data?: FormData
 }
 
 export const GenericForm: React.FC<Props> = ({formName, onSubmit, onClear}) => {
     const [userName, setUserName] = useState<string>('');
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = async (event: any) => {
         const url = 'https://api.github.com/users/';
@@ -41,14 +36,13 @@ export const GenericForm: React.FC<Props> = ({formName, onSubmit, onClear}) => {
             <input
                 type="text"
                 value={userName}
-                onChange={(event: any) => setUserName(event.target.value)}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUserName(event.target.value)}
                 placeholder={formName}
-                // ref={this.userNameInput}
+                ref={inputRef}
                 required
             />
             <button>Add card</button>
             <button onClick={event => (handleClear(event))}>Clear</button>
         </form>
     )
-
 }

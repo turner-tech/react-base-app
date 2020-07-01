@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from '../card/Card'
+import {Card} from '../card/Card'
 
-class CardList extends React.Component {
+export class CardList extends React.Component {
 	public props: any;
 	public profiles: any;
 
@@ -12,12 +12,3 @@ class CardList extends React.Component {
         </div>);
     }
 }
-
-// Keeping this in as a reference to how this is done as a variable instead of a class
-// const CardListAsVariable = (props: any) => (
-//     <div>
-//         {props.profiles.map(profile => <Card key={profile.id} {...profile}/>)}
-//     </div>
-// );
-
-export default CardList;

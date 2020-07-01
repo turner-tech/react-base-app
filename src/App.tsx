@@ -1,15 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.scss';
 import {GitHubCardApp} from "./app/GithubCard/GitHubCardApp";
+import {Game} from "./app/Game/Game";
 
-function App() {
+export function App() {
   return (
-    <div className="App">
+    <div className="App" id="base-app"> Collection of Simple React Apps
         <GitHubCardApp/>
+        <Game/>
     </div>
   );
 }
-
-export default App;

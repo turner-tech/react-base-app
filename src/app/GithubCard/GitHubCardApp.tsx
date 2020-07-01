@@ -1,5 +1,5 @@
 import React from 'react';
-import CardList from '../../features/cardlist/CardList'
+import {CardList} from '../../features/cardlist/CardList'
 import {GenericForm} from '../../features/genericform/GenericForm'
 
 export class GitHubCardApp extends React.Component {
@@ -22,9 +22,7 @@ export class GitHubCardApp extends React.Component {
     render() {
         return (
             <div>
-                {/*<div className="header"> {this.props.title}*/}
-                <div className="header"> {''}
-                </div>
+                <div className="header" > Github Profile Info App</div>
                 <GenericForm formName='Github Username' onSubmit={this.addNewProfile} onClear={this.clearProfile}/>
                 <CardList profiles={this.state.profiles}/>
             </div>

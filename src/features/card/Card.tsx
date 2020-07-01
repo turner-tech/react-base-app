@@ -1,6 +1,6 @@
 import React from "react";
 
-class Card extends React.Component {
+export class Card extends React.Component {
 	public props: any;
 
     render() {
@@ -17,5 +17,3 @@ class Card extends React.Component {
         );
     }
 }
-
-export default Card;
