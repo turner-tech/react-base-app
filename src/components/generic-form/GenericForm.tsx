@@ -1,4 +1,5 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
+// import React, {useRef, useState} from 'react';
 import {Button, Form, Input} from 'antd';
 
 const axios = require('axios').default;
@@ -11,18 +12,9 @@ interface Props {
     ok?: boolean;
 }
 
-const formItemLayout = {
-    labelCol: {span: 4},
-    wrapperCol: {span: 8},
-};
-const formTailLayout = {
-    labelCol: {span: 4},
-    wrapperCol: {span: 8, offset: 4},
-};
-
 export const GenericForm: React.FC<Props> = ({formName, onSubmit, onClear}) => {
     const [userName, setUserName] = useState<string>('');
-    const inputRef = useRef<HTMLInputElement>(null);
+    // const inputRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = async (event: any) => {
         const url = 'https://api.github.com/users/';
@@ -43,7 +35,7 @@ export const GenericForm: React.FC<Props> = ({formName, onSubmit, onClear}) => {
     };
 
     return (
-        <Form onKeyDown={(e)=>  e.keyCode == 13 ? handleSubmit(e) || e.preventDefault(): ''} >
+        <Form onKeyDown={(e)=>  e.keyCode === 13 ? handleSubmit(e) || e.preventDefault(): ''} >
             <Form.Item >
                 <Input
                     type="text"

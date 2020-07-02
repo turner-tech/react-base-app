@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.scss';
-import {GitHubCardApp} from './app/github-card/GitHubCardApp';
-import {Game} from './app/game/Game';
-import {Layout, Menu, Breadcrumb, Divider, PageHeader, Button, Descriptions} from 'antd';
+import {GitHubCardApp} from './components/github-card/GitHubCardApp';
+import {Game} from './components/game/Game';
+// import {Layout, Breadcrumb, Divider} from 'antd';
+import {Layout, Divider} from 'antd';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {NavBar} from "./features/nav-bar/NavBar";
-import {ComponentList} from "./features/component-list/ComponentList";
-import {StarMatch} from "./app/star-match/StarMatch";
-import { Counter } from './features/counter/Counter';
-import {GenericForm} from "./features/generic-form/GenericForm";
+import {NavBar} from "./components/nav-bar/NavBar";
+import {ComponentList} from "./components/component-list/ComponentList";
+import {StarMatch} from "./components/star-match/StarMatch";
+import { Counter } from './components/counter/Counter';
+import {GenericForm} from "./components/generic-form/GenericForm";
 
 const {Header, Content, Footer} = Layout;
 

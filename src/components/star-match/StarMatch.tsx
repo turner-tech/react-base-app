@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './StarMatch.scss';
-import {utils} from '../../utils/MathLogic';
+import {utils} from '../utils/MathLogic';
 import {PlayNumber} from './play-number/PlayNumber';
 import {StarsDisplay} from './stars-display/StarsDisplay';
 import {Card} from "antd";

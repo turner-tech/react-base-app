@@ -1,6 +1,6 @@
 import React from 'react';
-import { CardList } from '../../features/card-list/CardList';
-import { GenericForm } from '../../features/generic-form/GenericForm';
+import { CardList } from '../card-list/CardList';
+import { GenericForm } from '../generic-form/GenericForm';
 import './GitHubCardApp.scss';
 import {Card, Divider} from "antd";
 

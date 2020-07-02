@@ -1,5 +1,5 @@
 import React from 'react';
-import { utils } from '../../../utils/MathLogic';
+import { utils } from '../../utils/MathLogic';
 
 export class StarsDisplay extends React.Component {
     public props: any;

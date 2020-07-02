@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Divider, List, Typography } from 'antd';
+import { Divider, List } from 'antd';
 
 const data = ['Home', 'Games', 'Github', 'StarMatch', 'GenericForm', 'NavBar', 'Counter'];
 
