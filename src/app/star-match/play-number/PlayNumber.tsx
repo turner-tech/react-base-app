@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface Props {
-    numId: number
-    numStatus: string
+    numId: number;
+    numStatus: string;
     onClick: (numId: number, currentStatus: string) => void;
 }
 
@@ -12,24 +12,24 @@ const calcButtonColor = (numStatus: string): string => {
             return 'lightgray';
         }
         case 'used':
-            return 'lightgreen'
+            return 'lightgreen';
         case 'wrong':
-            return 'lightcoral'
+            return 'lightcoral';
         case 'candidate':
-            return 'deepskyblue'
+            return 'deepskyblue';
         default:
-            return 'lightgray'
+            return 'lightgray';
     }
-}
+};
 
-export const PlayNumber: React.FC<Props> = ({numId, numStatus, onClick}) => {
+export const PlayNumber: React.FC<Props> = ({ numId, numStatus, onClick }) => {
     return (
         <button
             className="number"
-            style={{backgroundColor: calcButtonColor(numStatus)}}
-            onClick={() => onClick(numId, numStatus)}>
+            style={{ backgroundColor: calcButtonColor(numStatus) }}
+            onClick={() => onClick(numId, numStatus)}
+        >
             {numId}
         </button>
-    )
-}
-
+    );
+};
