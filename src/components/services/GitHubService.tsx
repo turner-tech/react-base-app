@@ -14,7 +14,7 @@ interface Props {
 	ok?: boolean;
 }
 
-export const GenericForm: React.FC<Props> = ({
+export const GitHubService: React.FC<Props> = ({
 	formName,
 	onSubmit,
 	onClear,

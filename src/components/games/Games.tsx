@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StarMatch } from '../star-match/StarMatch';
 
-export const Game = () => {
+export const Games = () => {
 	const [gameId, setGameId] = useState(1);
 	return (
 		<div className='header'>

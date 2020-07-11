@@ -2,7 +2,7 @@ import React from 'react';
 import Meta from 'antd/es/card/Meta';
 import { Card as AntCard } from 'antd';
 
-export class Card extends React.Component {
+export class GitCard extends React.Component {
 	public props: any;
 
 	render() {

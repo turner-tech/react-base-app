@@ -1,8 +1,8 @@
 import React from 'react';
-import { CardList } from '../card-list/CardList';
-import { GenericForm } from '../generic-form/GenericForm';
+import { GitHubService } from '../services/GitHubService';
 import './GitHubCardApp.scss';
 import { Card, Divider } from 'antd';
+import {GitCardList} from "./git-card-list/GitCardList";
 
 export class GitHubCardApp extends React.Component {
 	state = {
@@ -25,13 +25,13 @@ export class GitHubCardApp extends React.Component {
 		return (
 			<Card>
 				<div className='header'> Github Profile Info App</div>
-				<GenericForm
+				<GitHubService
 					formName='Github Username'
 					onSubmit={this.addNewProfile}
 					onClear={this.clearProfile}
 				/>
 				<Divider />
-				<CardList profiles={this.state.profiles} />
+				<GitCardList profiles={this.state.profiles} />
 			</Card>
 		);
 	}
