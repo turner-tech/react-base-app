@@ -23,7 +23,7 @@ export const GenericForm: React.FC<Props> = ({
 	// const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleSubmit = async (event: any) => {
-		const url = 'https://api.github.com/users/';
+		const url = process.env.REACT_APP_GITHUB_API_URL;
 		event.preventDefault();
 		const response = await axios.get(url + `${userName}`);
 		console.log('Login: ' + response.data.login.toString());
