@@ -32,8 +32,8 @@
   },
   "scripts": {
     "start:local": "PORT=8080 env-cmd -f .local.env react-app-rewired start",
-    "start": "PORT=8080 env-cmd -f .env react-app-rewired start",
-    "start:server": "npm run build && node server.js",
+    "start:dev": "PORT=8080 env-cmd -f .env react-app-rewired start",
+    "start:server": "node server.js",
     "build:local": "env-cmd -f .local.env react-app-rewired build",
     "build": "env-cmd -f .env react-app-rewired build",
     "test": "react-app-rewired test",
