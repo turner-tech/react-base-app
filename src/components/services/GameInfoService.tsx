@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 // import { HowLongToBeatService, HowLongToBeatEntry } from 'howlongtobeat';
-let hltb = require('howlongtobeat');
+// let hltb = require('howlongtobeat');
 
-let hltbService = new hltb.HowLongToBeatService();
+// let hltbService = new hltb.HowLongToBeatService();
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // const axios = require('axios').default;
@@ -17,7 +17,7 @@ interface Props {
 	ok?: boolean;
 }
 
-export const GameLookupService: React.FC<Props> = ({
+export const GameInfoService: React.FC<Props> = ({
 	formName,
 	onSubmit,
 	onClear,
@@ -27,17 +27,35 @@ export const GameLookupService: React.FC<Props> = ({
 
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
-		hltbService.search(gameName).then((result: any[]) => {
-			console.log(result);
-			console.log('Login: ' + result[0].name.toString());
-			if (!result[0]) {
-				console.log(
-					'It is likely that Game: ' + gameName + ' was not found!'
-				);
-			} else {
-				onSubmit(result[0]);
+		const axios = require("axios");
+
+		let formattedGameName = gameName.replace(/\s+/g, '-').toLowerCase();
+		// console.log(formattedGameName); // "sonic-free-games"
+
+		axios({
+			"method":"GET",
+			"url":"https://rawg-video-games-database.p.rapidapi.com/games?search=" + formattedGameName,
+			"headers":{
+				"content-type":"application/octet-stream",
+				"x-rapidapi-host":"rawg-video-games-database.p.rapidapi.com",
+				"x-rapidapi-key":"2137c1efc5mshcba8bcdc1bef6a1p11ccc2jsnd1124dc7cc99",
+				"useQueryString":true
 			}
-			setGameName('');
+		})
+			.then((response: any)=>{
+				console.log(response)
+				if (!response?.data?.results) {
+					console.log(
+						'It is likely that Game: ' + gameName + ' was not found!'
+					);
+				} else {
+					console.log(response?.data?.results)
+					onSubmit(response?.data?.results);
+				}
+				setGameName('');
+			})
+			.catch((error: any)=>{
+				console.log(error)
 		});
 	};
 

@@ -11,17 +11,16 @@ export class GameCard extends React.Component {
 			<AntCard
 				hoverable
 				style={{ width: 240 }}
-				cover={<img alt='example' src={profile.imageUrl} />}
+				cover={<img alt='example' src={profile.background_image} />}
 			>
-				<h1>{profile.name}</h1>
+				<h1>{profile?.name}</h1>
 				<Meta
-					description={profile.description}
+					description={profile?.description?.replace(/<p>|<\/p>|<br>+/g, '').toLowerCase()}
 				/>
 				<p/>
-				<p>Main({profile.gameplayMain} hrs)</p>
-				<p>Main+Extra({profile.gameplayMainExtra} hrs)</p>
-				<p>Completionist({profile.gameplayCompletionist} hrs)</p>
-				<p>{profile.playableOn[0] ? 'Playable on: ' + profile.playableOn.toString() : ''}</p>
+				<p>Release Date: ({profile?.released})</p>
+				<p>{profile.metacritic ? 'Metacritic Score: (' + profile?.metacritic + ')' : ''}</p>
+				<p>Platforms:<p/>{profile.platforms.map((platform: any) => (<p>{platform.platform.name}</p>))}</p>
 			</AntCard>
 		);
 	}
