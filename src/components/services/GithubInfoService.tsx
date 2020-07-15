@@ -1,20 +1,15 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-// import React, {useRef, useState} from 'react';
 import { Button, Form, Input } from 'antd';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const axios = require('axios').default;
 
 interface Props {
 	formName: string;
 	onSubmit: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onClear: (event: React.ChangeEvent<HTMLButtonElement>) => void;
-	count?: number;
-	ok?: boolean;
 }
 
-export const GitHubService: React.FC<Props> = ({
+export const GithubInfoService: React.FC<Props> = ({
 	formName,
 	onSubmit,
 	onClear,
@@ -56,7 +51,6 @@ export const GitHubService: React.FC<Props> = ({
 						setUserName(event.target.value)
 					}
 					placeholder={formName}
-					// ref={inputRef}
 					required
 				/>
 				<Button onClick={handleSubmit}>Add card</Button>

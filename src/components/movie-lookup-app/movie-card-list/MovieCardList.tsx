@@ -1,7 +1,7 @@
 import React from 'react';
-import {GameCard} from '../game-card/GameCard';
+import {MovieCard} from '../movie-card/MovieCard';
 
-export class GameCardList extends React.Component {
+export class MovieCardList extends React.Component {
     public props: any;
     public profiles: any;
 
@@ -11,7 +11,7 @@ export class GameCardList extends React.Component {
             <div>
                 {profiles.map((profile: any) => (
                     profile.map((theProfile: any) => (
-                            <GameCard key={theProfile.id} {...theProfile} />
+                            <MovieCard key={theProfile?.imdbID} {...theProfile} />
                         )
                     )))}
             </div>

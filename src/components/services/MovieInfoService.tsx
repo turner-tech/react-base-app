@@ -7,41 +7,42 @@ interface Props {
 	onClear: (event: React.ChangeEvent<HTMLButtonElement>) => void;	count?: number;
 }
 
-export const GameInfoService: React.FC<Props> = ({
+export const MovieInfoService: React.FC<Props> = ({
 	formName,
 	onSubmit,
 	onClear,
 }) => {
-	const [gameName, setGameName] = useState<string>('');
-	// const inputRef = useRef<HTMLInputElement>(null);
+	const [movieName, setMovieName] = useState<string>('');
 
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
 		const axios = require("axios");
 
-		let formattedGameName = gameName.replace(/\s+/g, '-').toLowerCase();
-
 		axios({
 			"method":"GET",
-			"url":"https://rawg-video-games-database.p.rapidapi.com/games?search=" + formattedGameName,
+			"url":"https://movie-database-imdb-alternative.p.rapidapi.com/",
 			"headers":{
-				"content-type":"application/octet-stream",
-				"x-rapidapi-host":"rawg-video-games-database.p.rapidapi.com",
-				"x-rapidapi-key":"2137c1efc5mshcba8bcdc1bef6a1p11ccc2jsnd1124dc7cc99",
-				"useQueryString":true
+			"content-type":"application/octet-stream",
+			"x-rapidapi-host":"movie-database-imdb-alternative.p.rapidapi.com",
+			"x-rapidapi-key":"2137c1efc5mshcba8bcdc1bef6a1p11ccc2jsnd1124dc7cc99",
+			"useQueryString":true
+			},"params":{
+			"page":"1",
+			"r":"json",
+			"s": movieName
 			}
-		})
+			})
 			.then((response: any)=>{
 				console.log(response)
-				if (!response?.data?.results) {
+				if (!response?.data?.Search) {
 					console.log(
-						'It is likely that Game: ' + gameName + ' was not found!'
+						'It is likely that Game: ' + movieName + ' was not found!'
 					);
 				} else {
-					console.log(response?.data?.results)
-					onSubmit(response?.data?.results);
+					console.log(response?.data?.Search)
+					onSubmit(response?.data?.Search);
 				}
-				setGameName('');
+				setMovieName('');
 			})
 			.catch((error: any)=>{
 				console.log(error)
@@ -49,7 +50,7 @@ export const GameInfoService: React.FC<Props> = ({
 	};
 
 	const handleClear = (event: any) => {
-		setGameName('');
+		setMovieName('');
 		onClear(event);
 	};
 
@@ -62,12 +63,11 @@ export const GameInfoService: React.FC<Props> = ({
 			<Form.Item>
 				<Input
 					type='text'
-					value={gameName}
+					value={movieName}
 					onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-						setGameName(event.target.value)
+						setMovieName(event.target.value)
 					}
 					placeholder={formName}
-					// ref={inputRef}
 					required
 				/>
 				<Button onClick={handleSubmit}>Add card</Button>

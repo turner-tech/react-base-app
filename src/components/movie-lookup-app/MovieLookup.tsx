@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {GameCardList} from './game-card-list/GameCardList';
-import './GameLookup.scss';
+import {MovieCardList} from './movie-card-list/MovieCardList';
+import './MovieLookup.scss';
 import {Card, Divider} from 'antd';
-import {GameInfoService} from '../services/GameInfoService';
+import {MovieInfoService} from '../services/MovieInfoService';
 
-export const GameLookup: React.FC<{}> = () => {
+export const MovieLookup: React.FC<{}> = () => {
     const [state, setState] = useState<any>({profiles: []});
 
     let addNewProfile = (profileData: any) => {
@@ -21,14 +21,14 @@ export const GameLookup: React.FC<{}> = () => {
 
     return (
         <Card>
-            <div className='header'> Game Lookup Info App</div>
-            <GameInfoService
-                formName='Game Lookup'
+            <div className='header'> Movie Lookup Info App</div>
+            <MovieInfoService
+                formName='Movie Lookup'
                 onSubmit={addNewProfile}
                 onClear={clearProfile}
             />
             <Divider/>
-            <GameCardList profiles={state.profiles}/>
+            <MovieCardList profiles={state.profiles}/>
         </Card>
     );
 }

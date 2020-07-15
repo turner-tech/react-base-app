@@ -20,7 +20,7 @@ export class GameCard extends React.Component {
 				<p/>
 				<p>Release Date: ({profile?.released})</p>
 				<p>{profile.metacritic ? 'Metacritic Score: (' + profile?.metacritic + ')' : ''}</p>
-				<p>Platforms:<p/>{profile.platforms.map((platform: any) => (<p>{platform.platform.name}</p>))}</p>
+				<div>Platforms:<div/>{profile.platforms.map((platform: any) => (<div key={platform.platform.name}>{platform.platform.name}</div>))}</div>
 			</AntCard>
 		);
 	}

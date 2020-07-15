@@ -23,7 +23,7 @@ export function ComponentList() {
 				renderItem={(item) => (
 					<List.Item>
 						<Link to={`/${item}`}>
-							<li>{item}</li>
+							{item}
 						</Link>
 					</List.Item>
 				)}
